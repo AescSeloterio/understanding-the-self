@@ -67,10 +67,10 @@ function renderView() {
         main.innerHTML = `
             <div class="reveal space-y-12">
                 <section class="space-y-6">
-                    <span class="text-xs font-semibold tracking-widest uppercase text-stone-400">COURSE</span>
+                    <span class="text-xs font-semibold tracking-widest uppercase text-stone-400">TOPIC</span>
                     <h1 class="font-serif text-5xl md:text-6xl font-extrabold text-stone-900 leading-tight">Unpacking the Self</h1>
                     <p class="text-lg text-stone-600 max-w-2xl leading-relaxed">
-                        A guided course through the six dimensions of the self — physical, emotional, intellectual, social, spiritual, and digital. Read, reflect, and mark each lesson complete as you go.
+                        A guided topic through the six dimensions of the self — physical, emotional, intellectual, social, spiritual, and digital. Read, reflect, and mark each lesson complete as you go.
                     </p>
                     <div class="flex flex-wrap gap-6 text-sm text-stone-500 pt-2">
                         <span class="flex items-center gap-2"><i data-lucide="layers" class="w-4 h-4"></i> 7 lessons</span>
@@ -128,7 +128,7 @@ function renderView() {
             <div class="reveal space-y-10">
                 <div>
                     <button onclick="navigateTo('dashboard')" class="text-xs text-stone-500 hover:text-stone-900 flex items-center gap-1 mb-4 transition">
-                        <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i> Course outline
+                        <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i> Topic outline
                     </button>
                     <span class="text-xs font-semibold tracking-wider text-stone-400 uppercase">${item.category}</span>
                     <h1 class="font-serif text-4xl md:text-5xl font-extrabold text-stone-900 mt-1">${item.title}</h1>

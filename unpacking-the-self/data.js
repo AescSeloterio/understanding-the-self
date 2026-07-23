@@ -5,13 +5,13 @@ const lessons = [
         slug: "intro",
         title: "Introduction to the Self",
         category: "MODULE 00 • INTRODUCTION",
-        summary: "What the self is, why understanding it matters, and the key ideas that frame this course.",
+        summary: "What the self is, why understanding it matters, and the key ideas that frame this topic.",
         icon: "compass",
         isLesson: true,
         image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80",
         subtopics: ["01. What is the self?", "02. Why self-understanding matters", "03. Key concepts of unpacking"],
         content: `
-            <p class="text-stone-600 text-lg leading-relaxed">What the self is, why understanding it matters, and the key ideas that frame this course.</p>
+            <p class="text-stone-600 text-lg leading-relaxed">What the self is, why understanding it matters, and the key ideas that frame this topic.</p>
 
             <h3 id="sub0" class="font-serif text-2xl font-bold mt-8 text-stone-900">What is the self?</h3>
             <p class="text-stone-600 leading-relaxed">The self is the totality of who a person is — both the one who experiences (the <strong>"I,"</strong> the subject that thinks, feels, and acts) and the one who is experienced (the <strong>"Me,"</strong> the object of your own reflection). Philosophers and scientists have long tried to pin it down. Socrates urged, <em>"Know thyself."</em> René Descartes found certainty in <em>"I think, therefore I am."</em> William James split the self into the knower and the known, and George Herbert Mead showed how the self is built through social interaction.</p>
@@ -244,13 +244,13 @@ const lessons = [
         slug: "references",
         title: "References & Sources",
         category: "RESOURCES",
-        summary: "The works referenced throughout this course, for further reading.",
+        summary: "The works referenced throughout this topic, for further reading.",
         icon: "book-open",
         isLesson: false,
         image: null,
         subtopics: ["01. Foundational Texts", "02. Institutional Resources"],
         content: `
-            <p class="text-stone-600 text-lg leading-relaxed mb-6">Below are the works referenced throughout this course, provided for further reading and academic inquiry.</p>
+            <p class="text-stone-600 text-lg leading-relaxed mb-6">Below are the works referenced throughout this topic, provided for further reading and academic inquiry.</p>
 
             <div class="space-y-3">
                 <div class="p-4 bg-white rounded-xl border border-stone-200 shadow-sm flex gap-4 items-start">
@@ -291,7 +291,7 @@ const lessons = [
                 </div>
                 <div class="p-4 bg-white rounded-xl border border-stone-200 shadow-sm flex gap-4 items-start">
                     <span class="font-bold text-amber-800 text-sm">10</span>
-                    <p class="text-sm text-stone-700"><strong>University of Santo Tomas.</strong> <em>Understanding the Self (GEED 10023)</em> course materials and frameworks on "Unpacking the Self."</p>
+                    <p class="text-sm text-stone-700"><strong>University of Santo Tomas.</strong> <em>Understanding the Self (GEED 10023)</em> topic materials and frameworks on "Unpacking the Self."</p>
                 </div>
             </div>
         `,
