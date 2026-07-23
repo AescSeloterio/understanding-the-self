@@ -2,7 +2,7 @@
 
 A modern, interactive educational web guide designed to help users explore and reflect on the six core dimensions of identity.
 
-🚀 **[Click here to view the Live Website](https://aescseloterio.github.io/unpacking-the-self/)**
+[![Live Demo](https://img.shields.io/badge/Live_Demo-Visit_Site-amber?style=for-the-badge)](https://aescseloterio.github.io/unpacking-the-self/)
 ---
 
 ## 📖 Overview
