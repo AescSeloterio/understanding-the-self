@@ -13,6 +13,17 @@ const lessons = [
         content: `
             <p class="text-stone-600 text-lg leading-relaxed">What the self is, why understanding it matters, and the key ideas that frame this topic.</p>
 
+            <div class="my-6 aspect-video rounded-xl overflow-hidden shadow-sm border border-stone-200">
+                <iframe 
+                    class="w-full h-full" 
+                    src="https://www.youtube.com/embed/UHwVyplU3Pg" 
+                    title="Who am I? A philosophical inquiry - TED-Ed" 
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen>
+                </iframe>
+            </div>
+
             <h3 id="sub0" class="font-serif text-2xl font-bold mt-8 text-stone-900">What is the self?</h3>
             <p class="text-stone-600 leading-relaxed">The self is the totality of who a person is — both the one who experiences (the <strong>"I,"</strong> the subject that thinks, feels, and acts) and the one who is experienced (the <strong>"Me,"</strong> the object of your own reflection). Philosophers and scientists have long tried to pin it down. Socrates urged, <em>"Know thyself."</em> René Descartes found certainty in <em>"I think, therefore I am."</em> William James split the self into the knower and the known, and George Herbert Mead showed how the self is built through social interaction.</p>
 

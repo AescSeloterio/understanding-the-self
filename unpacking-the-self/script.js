@@ -10,6 +10,7 @@ let activeView = 'dashboard';
 function initApp() {
     renderSidebar();
     renderView();
+    setupMobileMenu();
 }
 
 function saveProgress() {
@@ -36,6 +37,8 @@ function saveReflection(lessonId) {
 
 function renderSidebar() {
     const nav = document.getElementById('sidebarNav');
+    if (!nav) return;
+
     nav.innerHTML = lessons.map((item, idx) => {
         const isActive = activeView === idx;
         const isDone = item.isLesson ? completedState[idx] : false;
@@ -44,12 +47,12 @@ function renderSidebar() {
             <button onclick="navigateTo(${idx})" class="w-full text-left flex items-center justify-between px-3 py-2.5 rounded-xl text-sm transition ${
                 isActive ? 'bg-stone-900 text-white font-medium' : 'text-stone-600 hover:bg-stone-100'
             }">
-                <div class="flex items-center gap-3">
-                    <span class="text-xs ${isActive ? 'opacity-60' : 'text-stone-400'}">${item.num}</span>
-                    <i data-lucide="${item.icon}" class="w-4 h-4"></i>
-                    <span>${item.title}</span>
+                <div class="flex items-center gap-3 overflow-hidden">
+                    <span class="text-xs shrink-0 ${isActive ? 'opacity-60' : 'text-stone-400'}">${item.num}</span>
+                    <i data-lucide="${item.icon}" class="w-4 h-4 shrink-0"></i>
+                    <span class="truncate">${item.title}</span>
                 </div>
-                ${isDone ? `<i data-lucide="check" class="w-3.5 h-3.5 ${isActive ? 'text-amber-400' : 'text-emerald-600'}"></i>` : ''}
+                ${isDone ? `<i data-lucide="check" class="w-3.5 h-3.5 shrink-0 ${isActive ? 'text-amber-400' : 'text-emerald-600'}"></i>` : ''}
             </button>
         `;
     }).join('');
@@ -60,6 +63,7 @@ function renderSidebar() {
 
 function renderView() {
     const main = document.getElementById('mainContent');
+    if (!main) return;
 
     if (activeView === 'dashboard') {
         const coreLessons = lessons.filter(l => l.isLesson);
@@ -131,8 +135,8 @@ function renderView() {
                         <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i> Topic outline
                     </button>
                     <span class="text-xs font-semibold tracking-wider text-stone-400 uppercase">${item.category}</span>
-                    <h1 class="font-serif text-4xl md:text-5xl font-extrabold text-stone-900 mt-1">${item.title}</h1>
-                    <p class="text-stone-600 mt-2 text-lg">${item.summary}</p>
+                    <h1 class="font-serif text-3xl md:text-5xl font-extrabold text-stone-900 mt-1">${item.title}</h1>
+                    <p class="text-stone-600 mt-2 text-base md:text-lg">${item.summary}</p>
                     
                     ${item.isLesson ? `
                         <div class="mt-4">
@@ -147,13 +151,12 @@ function renderView() {
                 </div>
 
                 ${item.image ? `
-                    <div class="w-full h-64 md:h-80 rounded-2xl overflow-hidden shadow-sm border border-stone-200">
+                    <div class="w-full h-56 sm:h-72 md:h-80 rounded-2xl overflow-hidden shadow-sm border border-stone-200">
                         <img src="${item.image}" alt="${item.title}" class="w-full h-full object-cover">
                     </div>
                 ` : ''}
 
                 <div class="grid grid-cols-1 lg:grid-cols-4 gap-8 pt-2">
-                    <!-- Non-clickable IN THIS LESSON list -->
                     <div class="lg:col-span-1 space-y-3">
                         <h5 class="text-xs font-bold text-stone-400 uppercase tracking-wider">IN THIS LESSON</h5>
                         <ul class="space-y-2 text-xs font-medium text-stone-600">
@@ -166,22 +169,21 @@ function renderView() {
                     <div class="lg:col-span-3 space-y-6">
                         ${item.content}
 
-                        <!-- Interactive Reflection Block matching screenshot -->
                         ${item.quote ? `
-                            <div class="bg-[#F6F3EC] border-l-4 border-amber-600 p-6 rounded-r-2xl space-y-4 my-8">
+                            <div class="bg-[#F6F3EC] border-l-4 border-amber-600 p-4 sm:p-6 rounded-r-2xl space-y-4 my-8">
                                 <span class="text-xs font-bold tracking-widest text-amber-800 uppercase">REFLECT</span>
-                                <blockquote class="font-serif text-xl italic text-stone-800">
+                                <blockquote class="font-serif text-lg sm:text-xl italic text-stone-800">
                                     "${item.quote}"
                                 </blockquote>
 
                                 <div class="space-y-2 pt-2">
-                                    <textarea id="reflectionInput_${item.id}" rows="4" placeholder="Write your private reflection here..." class="w-full p-4 rounded-xl border border-stone-300 bg-white text-sm text-stone-800 focus:outline-none focus:ring-2 focus:ring-amber-600 resize-y">${savedReflection}</textarea>
+                                    <textarea id="reflectionInput_${item.id}" rows="4" placeholder="Write your private reflection here..." class="w-full p-3 sm:p-4 rounded-xl border border-stone-300 bg-white text-sm text-stone-800 focus:outline-none focus:ring-2 focus:ring-amber-600 resize-y">${savedReflection}</textarea>
                                     
-                                    <div class="flex justify-between items-center pt-1">
+                                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 pt-1">
                                         <p class="text-[11px] text-stone-500 flex items-center gap-1">
-                                            <i data-lucide="lock" class="w-3 h-3"></i> This stays on your device only — nothing is saved online or shared.
+                                            <i data-lucide="lock" class="w-3 h-3 shrink-0"></i> Saved privately on this device.
                                         </p>
-                                        <button onclick="saveReflection(${item.id})" id="saveBtn_${item.id}" class="px-4 py-1.5 bg-stone-900 text-white text-xs rounded-full hover:bg-stone-800 transition">
+                                        <button onclick="saveReflection(${item.id})" id="saveBtn_${item.id}" class="px-4 py-1.5 bg-stone-900 text-white text-xs rounded-full hover:bg-stone-800 transition self-end sm:self-auto">
                                             Save reflection
                                         </button>
                                     </div>
@@ -204,14 +206,14 @@ function renderView() {
                             ${prevItem ? `
                                 <button onclick="navigateTo(${prevItem.id})" class="p-4 bg-white rounded-2xl border border-stone-200 text-left hover:border-amber-600 transition space-y-1">
                                     <span class="text-xs text-stone-400 flex items-center gap-1"><i data-lucide="arrow-left" class="w-3 h-3"></i> Previous</span>
-                                    <p class="font-serif font-bold text-stone-900">${prevItem.title}</p>
+                                    <p class="font-serif font-bold text-stone-900 truncate">${prevItem.title}</p>
                                 </button>
                             ` : '<div></div>'}
 
                             ${nextItem ? `
                                 <button onclick="navigateTo(${nextItem.id})" class="p-4 bg-white rounded-2xl border border-stone-200 text-right hover:border-amber-600 transition space-y-1">
                                     <span class="text-xs text-stone-400 flex items-center justify-end gap-1">Next <i data-lucide="arrow-right" class="w-3 h-3"></i></span>
-                                    <p class="font-serif font-bold text-stone-900">${nextItem.title}</p>
+                                    <p class="font-serif font-bold text-stone-900 truncate">${nextItem.title}</p>
                                 </button>
                             ` : '<div></div>'}
                         </div>
@@ -227,8 +229,16 @@ function renderView() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
+function closeMobileSidebar() {
+    const sidebar = document.getElementById('sidebar');
+    const sidebarOverlay = document.getElementById('sidebar-overlay');
+    if (sidebar) sidebar.classList.add('-translate-x-full');
+    if (sidebarOverlay) sidebarOverlay.classList.add('hidden');
+}
+
 function navigateTo(target) {
     activeView = target;
+    closeMobileSidebar();
     renderSidebar();
     renderView();
 }
@@ -310,6 +320,22 @@ function openOutlineModal() {
 
 function closeOutlineModal() {
     document.getElementById('outlineModal').classList.add('hidden');
+}
+
+function setupMobileMenu() {
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const closeSidebarBtn = document.getElementById('close-sidebar-btn');
+    const sidebar = document.getElementById('sidebar');
+    const sidebarOverlay = document.getElementById('sidebar-overlay');
+
+    function openSidebar() {
+        if (sidebar) sidebar.classList.remove('-translate-x-full');
+        if (sidebarOverlay) sidebarOverlay.classList.remove('hidden');
+    }
+
+    if (mobileMenuBtn) mobileMenuBtn.addEventListener('click', openSidebar);
+    if (closeSidebarBtn) closeSidebarBtn.addEventListener('click', closeMobileSidebar);
+    if (sidebarOverlay) sidebarOverlay.addEventListener('click', closeMobileSidebar);
 }
 
 window.addEventListener('DOMContentLoaded', initApp);
